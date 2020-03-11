@@ -15,15 +15,15 @@ class CreateEmailsTable extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->string('account_id');
-            $table->string('contact_id');              // Relacion con el usuario  
+            $table->unsignedBigInteger('account_id');
+            $table->string('contact_id')->nullable();;              // Relacion con el usuario  
             $table->string('slug')->unique();         // ID oculto
             $table->string('provider');              // nombre de la provedor de email... Gmail Hotmail        
             $table->string('pass');                // pass
             $table->string('user');               // user
      
             $table->timestamps();
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 

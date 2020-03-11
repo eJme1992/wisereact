@@ -14,8 +14,18 @@ class CreateServicesTable extends Migration
     public function up()
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); 
+            $table->unsignedBigInteger('account_id');
+            $table->string('slug')->unique();          // ID oculto
+            $table->string('price');                  // desarrollo HTML 
+            $table->string('type');                  // desarrollo HTML 
+            $table->string('description');          // Url de administracion
+            $table->string('status');              // Url de administracion
+            $table->string('time');               // se genera factura mensal ? 
+            $table->string('user');              // user
+          
             $table->timestamps();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 

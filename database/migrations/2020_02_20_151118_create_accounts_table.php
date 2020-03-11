@@ -15,7 +15,7 @@ class CreateAccountsTable extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->string('user_id');                   // Relacion con el usuario  
+            $table->unsignedBigInteger('user_id');                   // Relacion con el usuario  
             $table->string('slug')->unique();           // ID oculto
             $table->string('name');                    // Nombre de Fantasia  
             //$table->string('fantasy_name');         // Nombre de la empresa 

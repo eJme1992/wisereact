@@ -15,7 +15,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->string('account_id');                 // Relacion con el usuario  
+            $table->unsignedBigInteger('account_id');                 // Relacion con el usuario  
             $table->string('slug')->unique();            // ID oculto
             $table->string('country');                  // Pais
             $table->string('province');                // Provincia
@@ -25,7 +25,7 @@ class CreateAddressesTable extends Migration
             $table->string('type');                // Tipo principal secundario
             $table->timestamps();
 
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 

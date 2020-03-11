@@ -15,15 +15,15 @@ class CreateDbsTable extends Migration
     {
         Schema::create('dbs', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->string('account_id');
-            $table->string('hosting_id');
+            $table->unsignedBigInteger('account_id');
+            $table->string('hosting_id')->nullable();
             $table->string('slug')->unique();       // ID oculto
             $table->string('url');                 // Url de administracion
             $table->string('pass');               // pass
             $table->string('user');              // user
             $table->string('name');             // pin
             $table->timestamps();
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 

@@ -15,19 +15,19 @@ class CreateWebsTable extends Migration
     {
         Schema::create('webs', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->string('account_id');
-            $table->string('db_id');
-            $table->string('hosting_id');
-            $table->string('slug')->unique();       // ID oculto
-            $table->string('development');             // desarrollo HTML 
-            $table->string('web_type');             // desarrollo HTML 
-            $table->string('url_admin');                 // Url de administracion
+            $table->unsignedBigInteger('account_id');
+            $table->string('db_id')->nullable();
+            $table->string('hosting_id')->nullable();
+            $table->string('slug')->unique();           // ID oculto
+            $table->string('development');            // desarrollo HTML 
+            $table->string('web_type');              // desarrollo HTML 
+            $table->string('url_admin');            // Url de administracion
             $table->string('url');                 // Url de administracion
             $table->string('pass');               // pass
             $table->string('user');              // user
           
             $table->timestamps();
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 

@@ -15,7 +15,7 @@ class CreateHostingsTable extends Migration
     {
         Schema::create('hostings', function (Blueprint $table) {
             $table->bigIncrements('id'); 
-            $table->string('account_id');
+            $table->unsignedBigInteger('account_id');
             $table->string('slug')->unique();         // ID oculto
             $table->string('provider');              // nombre de la provedor de hosting        
             $table->string('plan');                 // Plan contratado
@@ -24,7 +24,7 @@ class CreateHostingsTable extends Migration
             $table->string('user');              // user
             $table->string('pin');              // pin
             $table->timestamps();
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
     }
 
