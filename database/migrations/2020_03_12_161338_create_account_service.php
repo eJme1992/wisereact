@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BillService extends Migration
+class CreateAccountService extends Migration
 {
     /**
      * Run the migrations.
@@ -32,6 +32,6 @@ class BillService extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('account_service');
     }
 }
